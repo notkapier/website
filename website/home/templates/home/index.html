@@ -1,1 +1,4 @@
-nothing
+{%for post in posts%}
+	{{post.post_title}}
+	<img src="{{ post.post_image.url }}"/>
+{%endfor%}
