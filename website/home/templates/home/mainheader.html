@@ -1,0 +1,76 @@
+
+{% include "home/header.html" %}
+<body>
+
+    <!--Main Navigation-->
+    <header>
+
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark red darken-4 scrolling-navbar styled">
+            <div class="container">
+
+                <!-- Brand -->
+                <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">CCSICT</a>
+
+                <!-- Collapse -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Left -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'index' %}">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'academics' %}">Academics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'alumni' %}">Alumni</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'index' %}">Digital Library</a>
+                        </li>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'index' %}">Traccer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'index' %}">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'index' %}">Contact Us</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a href="http://localhost/vtour/assets/old/https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/vtour/assets/old/https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://localhost/vtour/login" class="nav-link rounded waves-effect" target="_blank">
+                                <i class="fas fa-user mr-2"></i>Login
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+    </header>

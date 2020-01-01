@@ -1,0 +1,59 @@
+{% include "home/mainheader.html" %} 
+<main class="mt-5 pt-4">
+    <div class="container">
+        <div class="container z-depth-1 p-3">
+            <section class="my-3 ">
+
+                <!-- Section heading -->
+                <h3 class="h2-responsive text-danger darken-3 font-weight-bolder text-center my- styled4  animate slideOutDown slow ">College of Computing Studies, Information and Communication Technology</h3>
+                <!-- Section description -->
+
+                <!-- Grid row -->
+
+                <br>
+                <br>
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-lg-5 text-center text-lg-left">
+                        <img class="img-fluid  " src="{{ logo.element_image.url }}" alt="Sample image">
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-lg-7">
+
+                        <!-- Grid row -->
+                        {% if courses is not None %}
+                        {% for c in courses %}
+                        <div class="row mb-3">
+
+                            <!-- Grid column -->
+                            <div class="col-1">
+
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            
+                            <div class="col-xl-10 col-md-11 col-10">
+                                <h5 class="font-weight-bolder mb-3 styled3 " style="font-size:20px;">{{ c.course_name }}</h5>
+                                <p class="grey-text font-weight-bolder">{{ c.course_description }}</p>
+                            </div>
+                            
+                            <!-- Grid column -->
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+
+                        <!-- Grid row -->
+                    </div>
+                    <!--Grid column-->
+                </div>
+                <!-- Grid row -->
+
+            </section>
+        </div>
+    </div>
+</main>
+{% include "home/footer.html" %} 

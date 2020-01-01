@@ -1,4 +1,185 @@
-{%for post in posts%}
-	{{post.post_title}}
-	<img src="{{ post.post_image.url }}"/>
-{%endfor%}
+{% include "home/mainheader.html" %} 
+    <main class="mt-5 pt-4">
+        <div class="container">
+            <section class="">
+                <img style="height:4em;" class="float-left" src="{{ logo.element_image.url }}" />
+                <p class=" pt-2  dark-grey-text">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
+                    <br> &emsp;Isabela State University - Cabagan, Isabela
+                </p>
+            </section>
+            <section class=" wow fadeIn p-4" style="background-image: url({{ banner.element_image.url }});background-repeat: no-repeat;background-position: center center;background-size: cover;">
+
+                <!-- Content -->
+                <div class="card-body text-white text-center py-5 px-5 my-5" style="min-height:300px;">
+
+                    <h1 class="mb-4">
+                        <strong></strong>
+                    </h1>
+                    <p>
+                        <strong></strong>
+                    </p>
+                    <p class="mb-4">
+                        <strong></strong>
+                    </p>
+                    <!--
+                    <a target="_blank" href="http://localhost/vtour/assets/https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-green btn-lg">
+                        <i class="fas fa-graduation-cap ml-2"></i>
+                    </a>-->
+
+                </div>
+                <!-- Content -->
+            </section>
+
+            <div class="container z-depth-1">
+
+                <section id="v-1">
+
+                    <!-- Section: Magazine v.1 -->
+                    <section class="magazine-section ">
+
+                        <h3 class="h2-responsive text-danger darken-3 font-weight-bolder pt-5 pb-3 styled3 ml-3">
+    <!-- <img class="" src="http://localhost/vtour/assets/img/ccsict.jpg" class="float-left" alt="..."" style="height:2.5em;">-->Latest News</h3>
+
+                        <!-- Section heading -->
+                        <!-- Section description -->
+                        <!-- Grid row -->
+                        <div class="row px-4">
+
+                            <!-- Grid column -->
+                            <div class="col-lg-9 col-md-12">
+
+                                <!-- Featured news -->
+                                <div class="row">
+
+                                    <div class="single-news mb-4 col-md-12">
+
+                                        <!-- Image -->
+                                        <div class="view overlay rounded mb-4">
+                                            <img style="width:100%" class="img-fluid" src="{{ featured.post_image.url }}" />
+                                            <a>
+                                                <div class="mask rgba-white-slight"></div>
+                                            </a>
+                                        </div>
+
+                                        <!-- Data -->
+                                        <div class="news-data d-flex justify-content-between">
+                                            <a href="#!" class="">
+                                                <h6 class="font-weight-bold"></i>{{ featured.post_title }}</h6>
+                                            </a>
+                                            <p class="font-weight-bold dark-grey-text"><i class="fas fa-clock-o pr-2"></i>{{ featured.pub_date|date:'Y-m-d' }}</p>
+                                        </div>
+
+                                        <!-- Excerpt -->
+
+                                        <p class="dark-grey-text">{{ featured.post_description|slice:"0:200" }}
+                                            <button class="btn btn-info btn-sm">Read more</button>
+                                        </p>
+
+                                    </div>
+                                    <!-- Featured news -->
+                                    {% if posts is not None %}
+	                                    {%for post in posts%}
+											<!-- Small news -->
+										<div class="single-news mb-lg-3 mb-4  col-md-6">
+
+										    <!-- Grid row -->
+										    <div class="row">
+
+										        <!-- Grid column -->
+										        <div class="col-md-5">
+
+										            <!--Image-->
+										            <div class="view overlay rounded z-depth-1 mb-lg-0 mb-4">
+										                <img class="img-fluid" src="{{ post.post_image.url }}" alt="Sample image">
+										                <a>
+										                    <div class="mask rgba-white-slight"></div>
+										                </a>
+										            </div>
+
+										        </div>
+										        <!-- Grid column -->
+
+										        <!-- Grid column -->
+										        <div class="col-md-7">
+
+										            <!-- Excerpt -->
+										            <p  class="dark-grey-text"><b>{{ post.pub_date|date:'Y-m-d' }}</b>
+										                <br/><a class="justify-content-between" style="font-size:14px;">{{ post.post_description|slice:"0:100" }} . . .</a></p>
+										        </div>
+										        <!-- Grid column -->
+
+										    </div>
+										    <!-- Grid row -->
+
+										</div>
+										<!-- Small news -->	
+										{%endfor%}
+									{% else %}
+										
+									{% endif %}
+                                    
+
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-lg-3 col-md-12">
+
+                                <!-- Featured news -->
+                                <!-- Featured news -->
+                                <h5 class="styled4 text-danger">Announcements <i class="fas fa-bullhorn"></i></h5>
+                                <hr>
+
+                                <!-- Small news -->
+                                <div class="single-news mb-4">
+
+                                	{% if announcements is not None %}
+                                		{% for a in announcements %}
+	                                    <div class="row">
+
+	                                        <!-- Grid column -->
+	                                        <div class="col-md-12">
+
+	                                            <!-- Excerpt -->
+	                                            <a>
+	                                                <p class="dark-grey-text"><b><i class="fas fa-scroll text-danger"></i> {{ a.pub_date|date:'Y-m-d' }} </b>- {{ a.announcement_title|slice:"0:150" }} . . . <i class="fas fa-angle-double-right blue-text"></i></p>
+	                                            </a>
+	                                            <hr>
+	                                        </div>
+	                                    </div>
+	                                    {% endfor %}
+	                                {% endif %}
+                                    <div class="row">
+
+                                        <!-- Grid column -->
+                                        <div class="col-md-12 ">
+
+                                            <!-- Excerpt -->
+                                            <img class="img-fluid rounded img-circle p-3 float-center " src="http://localhost/vtour/assets/img/isu.png" />
+
+                                        </div>
+                                        <!-- Grid column -->
+
+                                    </div>
+                                    <!-- Grid row -->
+
+                                </div>
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+                    </section>
+                    <!-- Section: Magazine v.1 -->
+
+                </section>
+
+            </div>
+    </main>
+    <!--Main layout-->
+
+    <!--Footer-->
+    {% include "home/footer.html" %}

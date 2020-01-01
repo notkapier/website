@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 YEAR_CHOICES = []
-for r in range(1980, (datetime.datetime.now().year+1)):
+for r in range(1978, (datetime.datetime.now().year+1)):
     YEAR_CHOICES.append((r,r))
 # Create your models here.
 class PostStatus(models.Model):
@@ -20,6 +20,8 @@ class Post(models.Model):
 	post_image = models.ImageField(upload_to='uploads/',null='TRUE')
 
 class Announcement(models.Model):
+	def __str__(self):
+		return self.announcement_title
 	announcement_title = models.CharField(max_length=300)
 	pub_date = models.DateTimeField('date published',null='TRUE')
 	announcement_attachment = models.FileField(upload_to='uploads',null='TRUE')
@@ -27,8 +29,16 @@ class Announcement(models.Model):
 class Course(models.Model):
 	def __str__(self):
 		return self.course_name
+	course_abv = models.CharField(max_length=10)
 	course_name = models.CharField(max_length=300)
 	course_description = models.TextField()
+	@classmethod
+	def getAllCourses(self):
+		try:
+			courses = Course.objects.all()
+		except Course.DoesNotExist:
+			courses = None
+		return courses
 
 class Batch(models.Model):
 	def __str__(self):
@@ -37,7 +47,17 @@ class Batch(models.Model):
 	batch_year = models.IntegerField(('year graduated'),choices=YEAR_CHOICES,default=datetime.datetime.now().year)
 	class Meta:
 		verbose_name_plural="batches"
-
+		unique_together = ('course_id','batch_year')
+	@classmethod
+	def getAllBatches(self):
+		try:
+			batches = Batch.objects.order_by('batch_year').all()
+		except Batch.DoesNotExist:
+			batches = None
+		return batches
+class BatchImage(models.Model):
+	batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
+	batch_image_description = models.CharField(max_length=300)
 class Library(models.Model):
 	library_name = models.CharField(max_length=300)
 	def __str__(self):
@@ -59,8 +79,23 @@ class Element(models.Model):
 		return self.element_name
 	element_name = models.CharField(max_length=300)
 	element_description = models.TextField()
-	element_image = models.ImageField(upload_to='uploads/',null='TRUE')
-	element_attachment = models.FileField(upload_to='uploads/',null='TRUE')
+	element_image = models.ImageField(upload_to='uploads/',null='TRUE',blank='TRUE')
+	element_attachment = models.FileField(upload_to='uploads/',null='TRUE',blank='TRUE')
+
+	@classmethod
+	def getbanner(self):
+		try:
+			banner = Element.objects.get(element_name='banner')
+		except Element.DoesNotExist:
+			banner = Element(element_name='banner',element_description='Default Banner',element_image='/uploads/home.jpg')
+		return banner
+	def getlogo(self):
+		try:
+			logo = Element.objects.get(element_name='logo')
+		except Element.DoesNotExist:
+			logo = Element(element_name='logo',element_description='Default Logo',element_image='/uploads/logo_lAoTIdl.jpg')
+		return logo
+
 class TraccerItem(models.Model):
 	traccer = models.ForeignKey(Traccer,on_delete=models.CASCADE)
 	traccer_item_title = models.CharField(max_length=300)

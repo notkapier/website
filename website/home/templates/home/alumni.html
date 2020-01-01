@@ -1,0 +1,114 @@
+
+{% include "home/mainheader.html" %} 
+<main class="mt-5 pt-4">
+    <div class="container">
+        <div class="">
+
+            <section id="v-1">
+                <section class="pt-1">
+                    <img style="height:4em;" class="float-left" src="http://localhost/vtour/assets/img/ccsict.jpg" />
+                    <p class=" pt-2">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
+                        <br> &emsp;Isabela State University - Cabagan, Isabela
+                    </p>
+                </section>
+                <hr>
+
+                <!-- Section: Magazine v.1 -->
+                <section class="magazine-section ">
+
+                    <!-- Section heading -->
+                    <!-- Section description -->
+                    <!-- Grid row -->
+                    <div class="row px-4">
+
+                        <div class="col-lg-3 col-md-12">
+
+                            <h5 class="styled4 text-danger"><i class="fas fa-users"></i>&emsp;Batch </h5>
+                            {% if courses is not None %}
+                            {% for c in courses %}
+                            <div class="single-news">
+
+                                <div class="row">
+                                    <button class="btn btn-danger dropdown-toggle text-left" style="width:100%;background-color:#801414" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{c.course_abv}}</button>
+                                    {% if batches is not None %}
+                                    <div class="dropdown-menu" style="width:100%;">
+                                        {% for b in batches %}
+                                        {% if b.course_id == c.id%}
+                                        <a class="dropdown-item batches" id="batch{{b.id}}">{{b.batch_year|add:"-1"}} - {{b.batch_year}} </a>
+                                        <div class="dropdown-divider"></div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                        </div>
+
+                        <!-- Grid column -->
+                        <div class="col-lg-9 col-md-12 px-4">
+
+                            <!-- Featured news -->
+                            <div class="row">
+
+                                <div class="slider slider-for">
+                                    <div>
+
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                </div>
+                                <div class="slider slider-nav ">
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                    <div>
+                                        <img src="http://placehold.it/750x300" class="img-fluid" alt="Responsive image">
+                                    </div>
+                                </div>
+                                <!-- Featured news -->
+
+                            </div>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+
+                    </div>
+                    <!-- Grid row -->
+
+                </section>
+                <!-- Section: Magazine v.1 -->
+
+            </section>
+
+        </div>
+
+    </div>
+</main>
+{% include "home/footer.html" %} 
