@@ -92,6 +92,7 @@
     <script type="text/javascript" src="{% static '/js/bootstrap.min.js' %}"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{% static '/js/mdb.min.js' %}"></script>
+    <script type="text/javascript" src="{% static '/js/my.js' %}"></script>
     <!-- Initializations -->
     <script type="text/javascript">
         // Animations initialization
@@ -109,7 +110,7 @@
                 asNavFor: '.slider-nav'
             });
             $('.slider-nav').slick({
-                slidesToShow: 3,
+                slidesToShow: "{{ batches|length }}",
                 slidesToScroll: 1,
                 asNavFor: '.slider-for',
                 arrows: 'false',
@@ -117,9 +118,10 @@
                 centerMode: true,
                 focusOnSelect: true
             });
+
         });
     </script>
-    <script type="text/javascript" src="{% static '/js/my.js' %}"></script>
+    
 </body>
 
 </html>

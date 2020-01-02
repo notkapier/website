@@ -1,7 +1,11 @@
 from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
-from .models import Post,Element,PostStatus,Announcement,Course,Batch
+from .models import Post,Element,PostStatus,Announcement,Course,Batch,Library,Reference
 from django.utils.html import escape
+from django.template.loader import render_to_string
+from django.template import RequestContext
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 def index(request):
@@ -41,3 +45,18 @@ def alumni(request):
 	batches = b.getAllBatches()
 	return render(request,'home/alumni.html',{'courses':courses,'batches':batches})	
 
+@csrf_exempt
+def digitallibrary(request,library_id=0):
+	l = Library()
+	libraries = l.getAllLibraries()
+	if request.is_ajax():
+		library_id = library_id
+		references = Reference.objects.filter(library_id=library_id)
+		html = render_to_string('home/sample.html', {'references': references})
+		return HttpResponse(html)
+	else:
+		library_id = Library.objects.all()[:1].get().id
+		references = Reference.objects.filter(library_id=library_id)
+		return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references})
+
+	

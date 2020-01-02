@@ -45,13 +45,14 @@ class Batch(models.Model):
 		return "%s - %s" %(self.batch_year,self.course)
 	course = models.ForeignKey(Course, on_delete=models.CASCADE)
 	batch_year = models.IntegerField(('year graduated'),choices=YEAR_CHOICES,default=datetime.datetime.now().year)
+	batch_image = models.ImageField(upload_to='uploads/',null='TRUE')
 	class Meta:
 		verbose_name_plural="batches"
 		unique_together = ('course_id','batch_year')
 	@classmethod
 	def getAllBatches(self):
 		try:
-			batches = Batch.objects.order_by('batch_year').all()
+			batches = Batch.objects.order_by('-batch_year').all()
 		except Batch.DoesNotExist:
 			batches = None
 		return batches
@@ -64,7 +65,16 @@ class Library(models.Model):
 		return self.library_name
 	class Meta:
 		verbose_name_plural="Libraries"
+	@classmethod
+	def getAllLibraries(self):
+		try:
+			libraries = Library.objects.all()
+		except Library.DoesNotExist:
+			libraries = None
+		return libraries
 class Reference(models.Model):
+	def __str__(self):
+		return self.reference_title
 	reference_title = models.CharField(max_length=300)
 	library = models.ForeignKey(Library,on_delete=models.CASCADE)
 	reference_description = models.TextField()

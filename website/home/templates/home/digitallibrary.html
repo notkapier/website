@@ -1,0 +1,59 @@
+{% include "home/mainheader.html" %} 
+
+<main class="mt-5 pt-4">
+    <div class="container">
+        <div class="container z-depth-1">
+
+            <section id="v-1">
+                <section class="pt-1">
+                    <img style="height:4em;" class="float-left" src="http://localhost/vtour/assets/img/ccsict.jpg" />
+                    <p class=" pt-2">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
+                        <br> &emsp;Isabela State University - Cabagan, Isabela
+                    </p>
+                </section>
+                <hr>
+
+                <!-- Section: Magazine v.1 -->
+                <section class="magazine-section ">
+                    <div class="row px-4">
+
+                        <div class="col-lg-3 col-md-12">
+                            <h5 class="styled4 text-danger"></i>Masterlist of Collections </h5>
+                            <div class="single-news mb-4">
+
+                                <!-- Grid row -->
+                                {% for l in libraries %}
+
+                                <div class="row">
+                                    <!-- Grid column -->
+                                    <button class="btn btn-danger text-left library" name="{{l.id}}" style="width:100%;background-color:#801414" type="button">{{l.library_name}}</button>
+
+                                    <!-- Grid column -->
+                                </div>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+     
+                        <div id = "content-container" class="col-lg-9 col-md-12 px-4 mt-5">
+                            <ul>
+                                {% for r in references %}
+                                <li>
+                                    <a>{{r.reference_title}}</a><br/>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                          
+                        </div>
+                    </div>
+
+        </div>
+        <!-- Grid row -->
+
+        </section>
+        <!-- Section: Magazine v.1 -->
+
+    </div>
+</main>
+{% include "home/footer.html" %}
