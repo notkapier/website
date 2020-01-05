@@ -10,7 +10,8 @@
             <section class=" wow fadeIn p-4" style="background-image: url({{ banner.element_image.url }});background-repeat: no-repeat;background-position: center center;background-size: cover;">
 
                 <!-- Content -->
-                <div class="card-body text-white text-center py-5 px-5 my-5" style="min-height:300px;">
+                <div class="card-body text-white text-center py-5 px-5 my-5" style="min-height:200px;">
+                    <!--former 300px-->
 
                     <h1 class="mb-4">
                         <strong></strong>
@@ -30,8 +31,8 @@
                 <!-- Content -->
             </section>
 
-            <div class="container z-depth-1">
-
+            <div class="">
+            <!-- <div class="container z-depth-1"> -->
                 <section id="v-1">
 
                     <!-- Section: Magazine v.1 -->
@@ -63,16 +64,16 @@
 
                                         <!-- Data -->
                                         <div class="news-data d-flex justify-content-between">
-                                            <a href="#!" class="">
-                                                <h6 class="font-weight-bold"></i>{{ featured.post_title }}</h6>
+                                            <a href="{% url 'post' featured.id %}" target="_blank" class="">
+                                                <h5 class="font-weight-bolder"></i>{{ featured.post_title }}</h5>
                                             </a>
                                             <p class="font-weight-bold dark-grey-text"><i class="fas fa-clock-o pr-2"></i>{{ featured.pub_date|date:'Y-m-d' }}</p>
                                         </div>
 
                                         <!-- Excerpt -->
 
-                                        <p class="dark-grey-text">{{ featured.post_description|slice:"0:200" }}
-                                            <button class="btn btn-info btn-sm">Read more</button>
+                                        <p class="dark-grey-text font-weight-bolder" style="line-height: ;">{{ featured.post_description|slice:"0:200" }} . . .
+                                            <button class="btn btn-light btn-sm p-2">Read more</button>
                                         </p>
 
                                     </div>
@@ -103,8 +104,8 @@
 										        <div class="col-md-7">
 
 										            <!-- Excerpt -->
-										            <p  class="dark-grey-text"><b>{{ post.pub_date|date:'Y-m-d' }}</b>
-										                <br/><a class="justify-content-between" style="font-size:14px;">{{ post.post_description|slice:"0:100" }} . . .</a></p>
+										            <p  class="dark-grey-text font-weight-bolder"><b>{{ post.pub_date|date:'Y-m-d' }}</b>
+										                <br/><a class="justify-content-between" style="font-size:14px;color:#007bff">{{ post.post_description|slice:"0:100" }} . . .</a></p>
 										        </div>
 										        <!-- Grid column -->
 

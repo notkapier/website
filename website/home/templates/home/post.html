@@ -1,0 +1,80 @@
+{% include "home/mainheader.html" %} 
+    <main class="mt-5 pt-4">
+        <div class="container">
+            <section class="">
+                <img style="height:4em;" class="float-left" src="{{ logo.element_image.url }}" />
+                <p class=" pt-2  dark-grey-text">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
+                    <br> &emsp;Isabela State University - Cabagan, Isabela
+                </p>
+            </section>
+
+            <div class="">
+            <!-- <div class="container z-depth-1"> -->
+                <section id="v-1">
+
+                    <!-- Section: Magazine v.1 -->
+                    <section class="magazine-section ">
+                        <div class="row">
+
+                            <div class="col-lg-9 col-md-12">
+                                <hr>
+                                <div class="">
+                                <h4 class="font-weight-bolder" style="color:#444"></i>{{ featured.post_title }}</h4>
+                                <hr>
+                                
+                                <p style="font-size:15px;line-height:1px;">Date Posted: 2020-2-1</p>
+                                </div>
+                                
+                                    
+                                <!-- Featured news -->
+                                <div class="row">
+
+                                    <div class="single-news mb-2 col-md-12">
+
+                                        <!-- Image -->
+                                        <div class="view overlay rounded">
+                                            <img style="width:100%" class="img-fluid" src="{{ featured.post_image.url }}" />
+                                            <a>
+                                                <div class="mask rgba-white-slight"></div>
+                                            </a>
+                                        </div>
+
+                                        <!-- Data -->
+                                        <div class="news-data d-flex justify-content-between">
+                                            <p class="font-weight-bolder dark-grey-text"><i class="fas fa-clock-o pr-2"></i>{{ featured.pub_date|date:'Y-m-d' }}</p>
+                                        </div>
+
+                                        <!-- Excerpt -->
+
+                                        <p class="dark-grey-text">{{ featured.post_description}}
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Grid column -->
+
+                            <!-- Grid column -->
+                            <div class="col-lg-3 col-md-12 mt-4">
+
+                                <!-- Featured news -->
+                                <!-- Featured news -->
+                                <!-- <h5 class="">Archieved </i></h5> -->
+
+                            </div>
+                            <!-- Grid column -->
+
+                        </div>
+                        <!-- Grid row -->
+
+                    </section>
+                    <!-- Section: Magazine v.1 -->
+
+                </section>
+
+            </div>
+    </main>
+    <!--Main layout-->
+
+    <!--Footer-->
+    {% include "home/footer.html" %}

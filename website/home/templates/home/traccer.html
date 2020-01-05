@@ -1,6 +1,8 @@
 {% include "home/mainheader.html" %} 
+
 <main class="mt-5 pt-4">
     <div class="container">
+        <!-- <div class="container z-depth-1"> -->
         <div class="container ">
 
             <section id="v-1">
@@ -17,15 +19,15 @@
                     <div class="row px-4">
 
                         <div class="col-lg-3 col-md-12">
-                            <h5 class="styled4 text-danger"></i>Masterlist of Collections </h5>
+                            <h5 class="styled4 text-danger"></i>Traccer </h5>
                             <div class="single-news mb-4">
                                 <!-- Grid row -->
-                                {% if libraries is not None %}
-                                {% for l in libraries %}
+                                {% if traccers is not None %}
+                                {% for t in traccers %}
 
                                 <div class="row">
                                     <!-- Grid column -->
-                                    <button class="btn btn-danger text-left library" name="{{l.id}}" style="width:100%;background-color:#801414" type="button">{{l.library_name}}</button>
+                                    <button class="btn btn-danger text-left traccer" name="{{t.id}}" style="width:100%;background-color:#801414" type="button">{{t.traccer_type}}</button>
                                     <!-- Grid column -->
                                 </div>
                                 {% endfor %}
@@ -34,14 +36,15 @@
                         </div>
                         <div id="content-container" class="col-lg-9 col-md-12 px-4 mt-5">
                             <ul>
-                                {% if references is not None %}
-                                {% for r in references %}
+                                {% if tracceritems is not None %}
+                                {% for ti in tracceritems %}
                                 <li style="list-style: none;color:#339af0">
-                                    <i class="fas fa-angle-double-right mr-2"></i><a>{{r.reference_title}}</a><br/>
+                                    <i class="fas fa-angle-double-right mr-2"></i><a>{{ti.traccer_item_title}}</a>
                                 </li>
                                 {% endfor %}
                                 {% endif %}
                             </ul>
+                          
                         </div>
                     </div>
 

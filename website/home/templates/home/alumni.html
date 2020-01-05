@@ -2,7 +2,7 @@
 {% include "home/mainheader.html" %} 
 <main class="mt-5 pt-4">
     <div class="container">
-        <div class="">
+        <div class="container">
 
             <section id="v-1">
                 <section class="pt-1">
@@ -14,7 +14,7 @@
                 <hr>
 
                 <!-- Section: Magazine v.1 -->
-                <section class="magazine-section ">
+                <section class="magazine-section " style="min-height:274px;">
 
                     <!-- Section heading -->
                     <!-- Section description -->
@@ -31,7 +31,7 @@
                                 <div class="row">
                                     <button class="btn btn-danger dropdown-toggle text-left course" name="{{c.id}}" style="width:100%;background-color:#801414" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{c.course_abv}}</button>
                                     {% if batches is not None %}
-                                    <div class="dropdown-menu" style="width:100%;">
+                                    <div class="dropdown-menu force-scroll" style="width:100%;">
                                         {% for b in batches %}
                                         {% if b.course_id == c.id%}
                                         <a class="dropdown-item batches " name="{{ forloop.counter0 }}" id="batch{{b.id}}">{{b.batch_year|add:"-1"}} - {{b.batch_year}} </a>

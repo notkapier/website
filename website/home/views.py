@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
-from .models import Post,Element,PostStatus,Announcement,Course,Batch,Library,Reference
+from .models import Post,Element,PostStatus,Announcement,Course,Batch,Library,Reference,Traccer,TraccerItem
 from django.utils.html import escape
 from django.template.loader import render_to_string
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
+from pprint import pprint
+
 
 # Create your views here.
 def index(request):
@@ -50,13 +52,60 @@ def digitallibrary(request,library_id=0):
 	l = Library()
 	libraries = l.getAllLibraries()
 	if request.is_ajax():
-		library_id = library_id
+		library_id = request.POST['library_id']
+		# r = Reference()
 		references = Reference.objects.filter(library_id=library_id)
-		html = render_to_string('home/sample.html', {'references': references})
-		return HttpResponse(html)
+		# return render('home/sample.html',{'references':r.getAllReference(library_id)})
+		return render(request, "home/reference.html", {'references':references})
+		# html = render_to_string('home/sample.html',{'references':references})
+		# return HttpResponse(html)
 	else:
-		library_id = Library.objects.all()[:1].get().id
-		references = Reference.objects.filter(library_id=library_id)
-		return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references})
+		if libraries is None:
+			return render(request,'home/digitallibrary.html',{'libraries':None,'references':None})
+		else:
+			library = Library.objects.first()
+			if library is None:
+				return render(request,'home/digitallibrary.html',{'libraries':None,'references':None})
+			else:
+				library_id = library.id
+				references = Reference.objects.filter(library_id=library_id)
+				return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references})
+@csrf_exempt
+def traccer(request,traccer_id=0):
+	t = Traccer()
+	traccers = t.getAllTraccers()
+	if request.is_ajax():
+		traccer_id = request.POST['traccer_id']
+		# r = Reference()
+		tracceritems = TraccerItem.objects.filter(traccer_id=traccer_id)
+		# return render('home/sample.html',{'references':r.getAllReference(library_id)})
+		return render(request, "home/tracceritem.html", {'tracceritems':tracceritems})
+		# html = render_to_string('home/sample.html',{'references':references})
+		# return HttpResponse(html)
+	else:
+		if traccers is None:
+			return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None})
+		else:
+			traccer = Traccer.objects.first()
+			if traccers is None:
+				return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None})
+			else:
+				traccer_id = traccer.id
+				tracceritems = TraccerItem.objects.filter(traccer_id=traccer_id)
+				return render(request,'home/traccer.html',{'traccers':traccers,'tracceritems':tracceritems})
+def post(request,post_id):
+	post = Post.objects.get(post_id=post_id)
+	# posts = Post.objects.order_by('-pub_date').get[:6]
+	e = Element()
+	banner = e.getbanner()
+	logo = e.getlogo()
+
+	try:
+		announcements = Announcement.objects.order_by('-pub_date')[:5]
+	except Announcement.DoesNotExist:
+		announcements = None
+	return render(request,'home/post.html',{'banner':banner,'logo':logo,'featured':post,'announcements':announcements})
+			
+				
 
 	

@@ -71,7 +71,7 @@ class Library(models.Model):
 			libraries = Library.objects.all()
 		except Library.DoesNotExist:
 			libraries = None
-		return libraries
+		return libraries 
 class Reference(models.Model):
 	def __str__(self):
 		return self.reference_title
@@ -79,11 +79,29 @@ class Reference(models.Model):
 	library = models.ForeignKey(Library,on_delete=models.CASCADE)
 	reference_description = models.TextField()
 	reference_attachment = models.FileField(upload_to='uploads',null='TRUE')
+	@classmethod
+	def getAllReference(self,library_id):
+		try:
+			references = Reference.objects.filter(library_id=library_id)
+		except Reference.DoesNotExist:
+			references = None
+		return references
 class Traccer(models.Model):
 	def __str__(self):
 		return self.traccer_type
 	traccer_type = models.CharField(max_length=300)
 	traccer_image = models.ImageField(upload_to='uploads/',null='TRUE')
+	def __str__(self):
+		return self.traccer_type
+	class Meta:
+		verbose_name_plural="Traccers"
+	@classmethod
+	def getAllTraccers(self):
+		try:
+			traccers = Traccer.objects.all()
+		except Traccer.DoesNotExist:
+			traccers = None
+		return traccers 
 class Element(models.Model):
 	def __str__(self):
 		return self.element_name
@@ -112,5 +130,7 @@ class TraccerItem(models.Model):
 	traccer_item_description = models.TextField()
 	traccer_item_image = models.ImageField(upload_to='uploads/',null='TRUE')
 	traccer_item_attachment = models.FileField(upload_to='uploads/',null='TRUE')
+	def __str__(self):
+		return self.traccer_item_title
 
 

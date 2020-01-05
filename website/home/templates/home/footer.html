@@ -110,13 +110,17 @@
                 asNavFor: '.slider-nav'
             });
             $('.slider-nav').slick({
-                slidesToShow: "{{ batches|length }}",
+                // slidesToShow: "{{ batches|length }}",
+                slidesToShow: "3",
                 slidesToScroll: 1,
                 asNavFor: '.slider-for',
                 arrows: 'false',
                 dots: true,
                 centerMode: true,
-                focusOnSelect: true
+                focusOnSelect: true,
+                // autoplay: true, /* this is the new line */
+                //   autoplaySpeed: 2000,
+                //   infinite: true,
             });
 
         });
