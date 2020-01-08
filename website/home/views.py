@@ -14,7 +14,7 @@ def index(request):
 	feature = PostStatus.objects.get(post_status='Featured')
 	# posts = Post.objects.order_by('-pub_date').get[:6]
 	try:
-		posts = Post.objects.order_by('-pub_date')[:6]
+		posts = Post.objects.filter(status_id=PostStatus.objects.get(post_status='Active')).order_by('-pub_date')[:6]
 	except Post.DoesNotExist:
 		posts = None
 	try:
@@ -93,8 +93,8 @@ def traccer(request,traccer_id=0):
 				traccer_id = traccer.id
 				tracceritems = TraccerItem.objects.filter(traccer_id=traccer_id)
 				return render(request,'home/traccer.html',{'traccers':traccers,'tracceritems':tracceritems})
-def post(request,post_id):
-	post = Post.objects.get(post_id=post_id)
+def post(request,id):
+	post = Post.objects.get(id=id)
 	# posts = Post.objects.order_by('-pub_date').get[:6]
 	e = Element()
 	banner = e.getbanner()
@@ -104,7 +104,8 @@ def post(request,post_id):
 		announcements = Announcement.objects.order_by('-pub_date')[:5]
 	except Announcement.DoesNotExist:
 		announcements = None
-	return render(request,'home/post.html',{'banner':banner,'logo':logo,'featured':post,'announcements':announcements})
+	return render(request,'home/post.html',{'banner':banner,'logo':logo,'post':post,'announcements':announcements})
+
 			
 				
 

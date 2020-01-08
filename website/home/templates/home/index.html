@@ -64,8 +64,8 @@
 
                                         <!-- Data -->
                                         <div class="news-data d-flex justify-content-between">
-                                            <a href="{% url 'post' %}" target="_blank" class="">
-                                                <h5 class="font-weight-bolder"></i>{{ featured.post_title }}</h5>
+                                            <a href="{% url 'post' featured.id %}" target="_blank" class="">
+                                                <h5 class="font-weight-bolder"></i>{{ featured.post_title }} {{ featured.id }}</h5>
                                             </a>
                                             <p class="font-weight-bold dark-grey-text"><i class="fas fa-clock-o pr-2"></i>{{ featured.pub_date|date:'Y-m-d' }}</p>
                                         </div>
@@ -73,7 +73,7 @@
                                         <!-- Excerpt -->
 
                                         <p class="dark-grey-text font-weight-bolder" style="line-height: ;">{{ featured.post_description|slice:"0:200" }} . . .
-                                            <button class="btn btn-light btn-sm p-2">Read more</button>
+                                            <a href="{% url 'post' featured.id %}" target="_blank" class="btn btn-light btn-sm p-2">Read more</a>
                                         </p>
 
                                     </div>
@@ -105,7 +105,7 @@
 
 										            <!-- Excerpt -->
 										            <p  class="dark-grey-text font-weight-bolder"><b>{{ post.pub_date|date:'Y-m-d' }}</b>
-										                <br/><a class="justify-content-between" style="font-size:14px;color:#007bff">{{ post.post_description|slice:"0:100" }} . . .</a></p>
+										                <br/><a class="justify-content-between" href="{% url 'post' featured.id %}" target="_blank" style="font-size:14px;color:#007bff">{{ post.post_description|slice:"0:100" }} . . .</a></p>
 										        </div>
 										        <!-- Grid column -->
 

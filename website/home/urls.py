@@ -8,5 +8,5 @@ urlpatterns = [
 		path('alumni',views.alumni, name='alumni'),
 		path('digitallibrary',views.digitallibrary, name='digitallibrary'),
 		path('traccer',views.traccer, name='traccer'),
-		path('post',views.post, name='post'),
+		path('post/<int:id>/',views.post, name='post'),
 	]
