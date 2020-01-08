@@ -38,13 +38,13 @@
                     <!-- Section: Magazine v.1 -->
                     <section class="magazine-section ">
 
-                        <h3 class="h2-responsive text-danger darken-3 font-weight-bolder pt-5 pb-3 styled3 ml-3">
+                        <h3 class="h2-responsive text-danger darken-3 font-weight-bolder pt-5 pb-3 styled3 ">
     <!-- <img class="" src="http://localhost/vtour/assets/img/ccsict.jpg" class="float-left" alt="..."" style="height:2.5em;">-->Latest News</h3>
 
                         <!-- Section heading -->
                         <!-- Section description -->
                         <!-- Grid row -->
-                        <div class="row px-4">
+                        <div class="row">
 
                             <!-- Grid column -->
                             <div class="col-lg-9 col-md-12">
@@ -105,7 +105,7 @@
 
 										            <!-- Excerpt -->
 										            <p  class="dark-grey-text font-weight-bolder"><b>{{ post.pub_date|date:'Y-m-d' }}</b>
-										                <br/><a class="justify-content-between" href="{% url 'post' featured.id %}" target="_blank" style="font-size:14px;color:#007bff">{{ post.post_description|slice:"0:100" }} . . .</a></p>
+										                <br/><a class="justify-content-between" href="{% url 'post' post.id %}" target="_blank" style="font-size:14px;color:#007bff">{{ post.post_description|slice:"0:100" }} . . .</a></p>
 										        </div>
 										        <!-- Grid column -->
 

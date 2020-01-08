@@ -106,7 +106,18 @@ def post(request,id):
 		announcements = None
 	return render(request,'home/post.html',{'banner':banner,'logo':logo,'post':post,'announcements':announcements})
 
-			
+def reference(request,id):
+	reference = Reference.objects.get(id=id)
+	# posts = Post.objects.order_by('-pub_date').get[:6]
+	e = Element()
+	banner = e.getbanner()
+	logo = e.getlogo()
+
+	try:
+		announcements = Announcement.objects.order_by('-pub_date')[:5]
+	except Announcement.DoesNotExist:
+		announcements = None
+	return render(request,'home/referenceitem.html',{'banner':banner,'logo':logo,'reference':reference})			
 				
 
 	

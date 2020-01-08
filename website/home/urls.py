@@ -9,4 +9,5 @@ urlpatterns = [
 		path('digitallibrary',views.digitallibrary, name='digitallibrary'),
 		path('traccer',views.traccer, name='traccer'),
 		path('post/<int:id>/',views.post, name='post'),
+		path('reference/<int:id>/',views.reference, name='referenceitem'),
 	]
