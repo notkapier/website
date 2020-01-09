@@ -7,6 +7,8 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
 from pprint import pprint
+import os
+from django.conf import settings
 
 
 # Create your views here.
@@ -109,15 +111,21 @@ def post(request,id):
 def reference(request,id):
 	reference = Reference.objects.get(id=id)
 	# posts = Post.objects.order_by('-pub_date').get[:6]
+
 	e = Element()
 	banner = e.getbanner()
 	logo = e.getlogo()
 
-	try:
-		announcements = Announcement.objects.order_by('-pub_date')[:5]
-	except Announcement.DoesNotExist:
-		announcements = None
-	return render(request,'home/referenceitem.html',{'banner':banner,'logo':logo,'reference':reference})			
-				
+	library = Library.objects.get(id=reference.library_id)
 
-	
+	return render(request,'home/referenceitem.html',{'banner':banner,'logo':logo,'reference':reference,'library':library})			
+
+def download(request, id):
+	path = Reference.objects.get(id = id).filename
+	file_path = os.path.join(settings.MEDIA_ROOT,path)
+	if os.path.exists(file_path):
+		with open(file_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type = "application/octet-stream")
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+			return response
+	raise Http404

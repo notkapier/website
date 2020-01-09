@@ -10,4 +10,5 @@ urlpatterns = [
 		path('traccer',views.traccer, name='traccer'),
 		path('post/<int:id>/',views.post, name='post'),
 		path('reference/<int:id>/',views.reference, name='referenceitem'),
+		path('download/<int:id>/',views.download, name='download'),
 	]

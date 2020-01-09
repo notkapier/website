@@ -78,6 +78,7 @@ class Reference(models.Model):
 	reference_title = models.CharField(max_length=300)
 	library = models.ForeignKey(Library,on_delete=models.CASCADE)
 	reference_description = models.TextField()
+	pub_date = models.DateTimeField('date published',null='TRUE')
 	reference_attachment = models.FileField(upload_to='uploads',null='TRUE')
 	@classmethod
 	def getAllReference(self,library_id):
@@ -86,6 +87,10 @@ class Reference(models.Model):
 		except Reference.DoesNotExist:
 			references = None
 		return references
+	@property
+	def filename(self):
+		return self.reference_attachment.path
+	
 class Traccer(models.Model):
 	def __str__(self):
 		return self.traccer_type
