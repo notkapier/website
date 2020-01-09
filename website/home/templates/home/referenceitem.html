@@ -45,8 +45,9 @@
                                     </p>
 
                                 </div>
-                                <a class="btn btn-primary btn-sm" href="{% url 'download' reference.id %}" download="true"></a>
-                                <p>{{reference.reference_attachment}}</p>
+                                {% if reference.reference_attachment %}
+                                <a class="btn btn-primary btn-sm" href="{% url 'download' reference.id %}" download="true">download</a>
+                                {% endif %}
                             </div>
                         </div>
                         <!-- Grid column -->
