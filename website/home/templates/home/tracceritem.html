@@ -1,11 +1,82 @@
-<ul>
-	{% if tracceritems is not None %}
-	{% for t in tracceritems %}
-	<li style="list-style: none;color:#339af0">
-        <i class="fas fa-angle-double-right mr-2"></i><a>{{t.traccer_item_title}}</a>
-	</li>
-	{% endfor %}
-	{% else %}
-		<p>Nothing here</p>
-	{% endif %}
-</ul>
+{% include "home/mainheader.html" %}
+<main class="mt-5 pt-4">
+    <div class="container">
+        <section class="">
+            <img style="height:4em;" class="float-left" src="{{ logo.element_image.url }}" />
+            <p class=" pt-2  dark-grey-text">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
+                <br> &emsp;Isabela State University - Cabagan, Isabela
+            </p>
+        </section>
+
+        <div class="">
+            <!-- <div class="container z-depth-1"> -->
+            <section id="v-1">
+
+                <!-- Section: Magazine v.1 -->
+                <section class="magazine-section " style="min-height:300px;">
+                    <div class="row">
+
+                        <div class="col-lg-9 col-md-12">
+                            <hr>
+                            <div class="">
+                                <div class="row px-3">
+                                        <h4 class="font-weight-bolder pb-2" style="color:#444"></i>{{ tracceritem.traccer_item_title }}</h4>
+                                </div>
+                                <div class="row justify-content-between px-3">
+                                        <p><a class="float-left" href="{% url 'traccer' tracceritem.traccer_id %}" style="font-size:15px;line-height:3px;">{{traccer}}</a></p>
+                                </div>
+                                <hr>
+                                {% if tracceritem.traccer_item_image %}
+                                <div class="view overlay rounded">
+                                    <img style="width:100%" class="img-fluid" src="{{ tracceritem.traccer_item_image.url }}" />
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Featured news -->
+                            <div class="row pt-2">
+
+                                <div class="single-news mb-2 col-md-12">
+                                     
+                                    <!-- Image -->
+                                    <div class="view overlay rounded">
+                                        
+                                    </div>
+                                    <p class="dark-grey-text" style="font-size:14px;">{{ tracceritem.traccer_item_description}}
+                                    </p>
+
+                                </div>
+                                {% if tracceritem.traccer_item_attachment %}
+                                <a class="btn btn-primary btn-sm" href="{% url 'download_tracceritem' tracceritem.id %}" download="true">download</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-lg-3 col-md-12 mt-4">
+
+                            <!-- Featured news -->
+                            <!-- Featured news -->
+                            <!-- <h5 class="">Archieved </i></h5> -->
+
+                        </div>
+                        <!-- Grid column -->
+
+                    </div>
+                    <!-- Grid row -->
+
+                </section>
+                <!-- Section: Magazine v.1 -->
+
+            </section>
+
+        </div>
+</main>
+<!--Main layout-->
+
+<!--Footer-->
+{% include "home/footer.html" %}

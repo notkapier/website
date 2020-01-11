@@ -143,5 +143,15 @@ class TraccerItem(models.Model):
 	traccer_item_attachment = models.FileField(upload_to='uploads/',null='TRUE')
 	def __str__(self):
 		return self.traccer_item_title
+	@property
+	def filename(self):
+		return self.traccer_item_attachment.path
+	@classmethod
+	def getAllTraccerItem(self,traccer_id):
+		try:
+			tracceritems = TraccerItem.objects.filter(traccer_id=traccer_id)
+		except Reference.DoesNotExist:
+			tracceritems = None
+		return tracceritems
 
 

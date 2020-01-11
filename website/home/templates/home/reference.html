@@ -1,8 +1,9 @@
-<ul class="pt-2">
+<h3 class="ml-4 pl-3 pt-2 font-weight-bolder grey-text"><i class="fas fa-caret-right mr-2"></i>{{library_name}}</h3>
+<ul class="">
 	{% if references is not None %}
     {% for r in references %}
     <li style="list-style: none;" class="px-0">
-        <i class="fas fa-caret-right mr-2"></i><a href="{% url 'referenceitem' r.id %}" target="_blank" class="s_font font-weight-bolder ">{{r.reference_title}}{{r.id}}</a>
+        <a href="{% url 'referenceitem' r.id %}" target="_blank" class="s_font font-weight-bolder ">-  {{r.reference_title}}</a>
     </li>
     {% endfor %}
     {% endif %}

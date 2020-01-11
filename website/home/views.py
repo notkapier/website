@@ -45,9 +45,11 @@ def academics(request):
 def alumni(request):
 	c = Course()
 	b = Batch()
+	e = Element()
+	logo = e.getlogo()
 	courses = c.getAllCourses()
 	batches = b.getAllBatches()
-	return render(request,'home/alumni.html',{'courses':courses,'batches':batches})	
+	return render(request,'home/alumni.html',{'courses':courses,'batches':batches,'logo':logo})	
 
 @csrf_exempt
 def digitallibrary(request,library_id=0):
@@ -55,23 +57,28 @@ def digitallibrary(request,library_id=0):
 	libraries = l.getAllLibraries()
 	if request.is_ajax():
 		library_id = request.POST['library_id']
+		library_name = Library.objects.get(id=library_id).library_name
 		# r = Reference()
 		references = Reference.objects.filter(library_id=library_id)
 		# return render('home/sample.html',{'references':r.getAllReference(library_id)})
-		return render(request, "home/reference.html", {'references':references})
+		return render(request, "home/reference.html", {'references':references,'library_name':library_name})
 		# html = render_to_string('home/sample.html',{'references':references})
 		# return HttpResponse(html)
 	else:
 		if libraries is None:
 			return render(request,'home/digitallibrary.html',{'libraries':None,'references':None})
 		else:
-			library = Library.objects.first()
+			if library_id==0:
+				library = Library.objects.first()
+			else:
+				library = Library.objects.get(id=library_id)
 			if library is None:
 				return render(request,'home/digitallibrary.html',{'libraries':None,'references':None})
 			else:
 				library_id = library.id
+				library_name = library.library_name
 				references = Reference.objects.filter(library_id=library_id)
-				return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references})
+				return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references,'library_name':library_name})
 @csrf_exempt
 def traccer(request,traccer_id=0):
 	e = Element()
@@ -81,22 +88,27 @@ def traccer(request,traccer_id=0):
 	if request.is_ajax():
 		traccer_id = request.POST['traccer_id']
 		# r = Reference()
+		traccer_type = Traccer.objects.get(id=traccer_id).traccer_type
 		tracceritems = TraccerItem.objects.filter(traccer_id=traccer_id)
 		# return render('home/sample.html',{'references':r.getAllReference(library_id)})
-		return render(request, "home/tracceritem.html", {'tracceritems':tracceritems})
+		return render(request, "home/tracceritems.html", {'tracceritems':tracceritems,'traccer_type':traccer_type})
 		# html = render_to_string('home/sample.html',{'references':references})
 		# return HttpResponse(html)
 	else:
 		if traccers is None:
 			return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None,'logo':logo})
 		else:
-			traccer = Traccer.objects.first()
+			if traccer_id == 0:
+				traccer = Traccer.objects.first()
+			else:
+				traccer = Traccer.objects.get(id=traccer_id)	
 			if traccers is None:
 				return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None,'logo':logo})
 			else:
 				traccer_id = traccer.id
+				traccer_type = traccer.traccer_type
 				tracceritems = TraccerItem.objects.filter(traccer_id=traccer_id)
-				return render(request,'home/traccer.html',{'traccers':traccers,'tracceritems':tracceritems,'logo':logo})
+				return render(request,'home/traccer.html',{'traccers':traccers,'tracceritems':tracceritems,'logo':logo,'traccer_type':traccer_type})
 def post(request,id):
 	post = Post.objects.get(id=id)
 	# posts = Post.objects.order_by('-pub_date').get[:6]
@@ -141,3 +153,19 @@ def download_announcement(request, id):
 			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
 			return response
 	raise Http404
+def download_tracceritem(request, id):
+	path = Announcement.objects.get(id = id).filename
+	file_path = os.path.join(settings.MEDIA_ROOT,path)
+	if os.path.exists(file_path):
+		with open(file_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type = "application/octet-stream")
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+			return response
+	raise Http404
+def tracceritem(request,id):
+	tracceritem = TraccerItem.objects.get(id=id)
+	e = Element()
+	banner = e.getbanner()
+	logo = e.getlogo()
+	traccer = Traccer.objects.get(id=tracceritem.traccer_id)
+	return render(request,'home/tracceritem.html',{'banner':banner,'logo':logo,'tracceritem':tracceritem,'traccer':traccer})

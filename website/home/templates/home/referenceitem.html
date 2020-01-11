@@ -25,7 +25,7 @@
                                 <div class="row justify-content-between px-3">
                                         
                                         
-                                        <p><a class="float-left" style="font-size:15px;line-height:3px;">{{library}}</a></p>
+                                        <p><a class="float-left" href="{% url 'digitallibrary' reference.library_id %}" style="font-size:15px;line-height:3px;">{{library}}</a></p>
                                         <p style="font-size:15px;line-height:3px;" class="mb-1 float-right">Date Posted: {{ reference.pub_date|date:'Y-m-d' }}</p>
                                 </div>
                                 <hr>
