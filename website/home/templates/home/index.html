@@ -7,7 +7,7 @@
                     <br> &emsp;Isabela State University - Cabagan, Isabela
                 </p>
             </section>
-            <section class=" wow fadeIn p-4" style="background-image: url({{ banner.element_image.url }});background-repeat: no-repeat;background-position: center center;background-size: cover;">
+            <section class=" wow fadeIn p-4 card" style="background-image: url({{ banner.element_image.url }});background-repeat: no-repeat;background-position: center center;background-size: cover;">
 
                 <!-- Content -->
                 <div class="card-body text-white text-center py-5 px-5 my-5" style="min-height:200px;">
@@ -43,16 +43,16 @@
                         <!-- Section heading -->
                         <!-- Section description -->
                         <!-- Grid row -->
-                        <div class="row">
+                        <div class="row px-3 ">
 
                             <!-- Grid column -->
-                            <div class="col-lg-8 col-md-12">
-                                <h3 class=" text-danger darken-3 font-weight-bolder pt-3 pb-0 ">Latest News</h3>
-                                <hr>
+                            <div class="col-lg-8 col-md-12 card mt-3 ">
+                                <h3 class=" text-danger darken-3 pt-3 pb-0 ">Latest News and Updates</h3>
+                                
                                 <!-- Featured news -->
-                                <div class="row">
+                                <div class="row  border-bottom">
 
-                                    <div class="single-news mb-4 col-md-12">
+                                    <div class="single-news mb-4 col-md-12  pt-3">
 
                                         <!-- Image -->
                                         <div class="view overlay rounded mb-4" style="height:300px !important;">
@@ -64,19 +64,19 @@
 
                                         <!-- Data -->
                                         <div class="news-data d-flex justify-content-between">
-                                            <a href="{% url 'post' featured.id %}" target="_blank" class="dark-grey-text font-weight-bolder">
+                                            <a href="{% url 'post' featured.id %}" target="_blank" class="dark-grey-text font-weight-bold">
                                                 <p class=""></i>{{ featured.post_title }}</p>
                                             </a>
-                                            <p class="font-weight-bold dark-grey-text"><i class="fas fa-clock-o pr-2"></i>{{ featured.pub_date|date:'Y-m-d' }}</p>
+                                            <p class="dark-grey-text"><i class="fas fa-clock-o "></i>{{ featured.pub_date|date:'Y-m-d' }}</p>
                                         </div>
 
                                         <!-- Excerpt -->
 
-                                        <p class="dark-grey-text" style="line-height: ;">{{ featured.post_description|slice:"0:200" }} . . .
-                                            <a href="{% url 'post' featured.id %}" target="_blank" class="badge badge-info p-2">Read more</a>
+                                        <p class="grey-text" style="line-height: ;font-size: 14px;">{{ featured.post_description|striptags|slice:"0:230" }} . . .
+                                            <a href="{% url 'post' featured.id %}" target="_blank" class="badge badge-info p-1">Read more</a>
                                         </p>
-                                        <hr>
                                     </div>
+
                                     <!-- Featured news -->
                                     {% if posts is not None %}
 	                                    {%for post in posts%}
@@ -87,11 +87,11 @@
 										    <div class="row">
 
 										        <!-- Grid column -->
-										        <div class="col-md-5">
+										        <div class="col-md-4">
 
 										            <!--Image-->
-										            <div class="view overlay rounded z-depth-1 mb-lg-0 mb-4">
-										                <img class="img-fluid" src="{{ post.post_image.url }}" alt="Sample image">
+										            <div class="view overlay rounded mb-lg-0 mb-4">
+										                <img class="img-fluid" style="height:80px;width:auto;" src="{{ post.post_image.url }}" alt="Sample image">
 										                <a>
 										                    <div class="mask rgba-white-slight"></div>
 										                </a>
@@ -101,15 +101,19 @@
 										        <!-- Grid column -->
 
 										        <!-- Grid column -->
-										        <div class="col-md-7">
+										        <div class="col-md-8"  style="">
 
 										            <!-- Excerpt -->
-										            <p  class="dark-grey-text font-weight-bolder"><b>{{ post.pub_date|date:'Y-m-d' }}</b>
-										                <br/><a class="justify-content-between" href="{% url 'post' post.id %}" target="_blank" style="font-size:14px;color:#007bff">{{ post.post_description|slice:"0:100" }} . . .</a></p>
+                                                    <p style="font-size: 12px;" class="pt-1 mb-1 dark-grey-text">{{ post.pub_date|date:'Y-m-d' }}</p>
+                                                     <p class="grey-text font" style="line-height: ;font-size: 12px;">{{ post.post_title|striptags|safe|slice:"0:100" }} . . .
+                                                        <a href="{% url 'post' featured.id %}" target="_blank" class="badge badge-info p-1 float-right">Read more</a>
+                                                    </p>
 										        </div>
+
 										        <!-- Grid column -->
 
 										    </div>
+                                            <hr class="m-0">
 										    <!-- Grid row -->
 
 										</div>
@@ -125,32 +129,43 @@
                             <!-- Grid column -->
 
                             <!-- Grid column -->
-                            <div class="col-lg-4 col-md-12 pt-5">
+                            <div class="col-lg-4 col-md-12 pt-3">
 
                                 <!-- Featured news -->
                                 <!-- Featured news -->
-                                <h5 class="styled4 text-danger pt-0">Announcements </h5>
-                                <hr>
+                                
 
                                 <!-- Small news -->
-                                <div class="single-news mb-4">
+                                <div class="single-news mb-4 pb-0 ">
+                                    <div class="container">
+                                      <div class="card">
+                                        <div class="card-header bg-danger pb-1 pt-2 px-3">
+                                            <h5 class=" text-white py-0">Announcements </h5>
+                                        </div>
+                                        <div class="card-body">
+                                            {% if announcements is not None %}
+                                                {% for a in announcements %}
+                                                <div class="row m-0">
 
-                                	{% if announcements is not None %}
-                                		{% for a in announcements %}
-	                                    <div class="row">
+                                                    <!-- Grid column -->
+                                                    <div class="col-md-12">
 
-	                                        <!-- Grid column -->
-	                                        <div class="col-md-12">
+                                                        <!-- Excerpt -->
+                                                        <a>
+                                                            <p class="grey-text mb-0 py-0" style="font-size:13px;"><b> {{ a.pub_date|date:'Y-m-d' }} </b>- {{ a.announcement_title|slice:"0:500" }} </p>
+                                                        </a>
+                                                        {% if a.announcement_attachment %}
+                                                        <a href="{% url 'download_announcement' a.id %}" download class="badge badge-primary my-0">attachment</a>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div> 
+                                      </div>
+                                    </div>
 
-	                                            <!-- Excerpt -->
-	                                            <a>
-	                                                <p class="dark-grey-text" style="font-size:13px"><b> {{ a.pub_date|date:'Y-m-d' }} </b>- {{ a.announcement_title|slice:"0:150" }} </p>
-	                                            </a>
-	                                            <hr>
-	                                        </div>
-	                                    </div>
-	                                    {% endfor %}
-	                                {% endif %}
+                                	
                                     <div class="row">
 
                                         <!-- Grid column -->

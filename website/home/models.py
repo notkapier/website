@@ -1,9 +1,12 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 import datetime
 YEAR_CHOICES = []
 for r in range(1978, (datetime.datetime.now().year+1)):
     YEAR_CHOICES.append((r,r))
 # Create your models here.
+
 class PostStatus(models.Model):
 	def __str__(self):
 		return self.post_status
@@ -14,7 +17,7 @@ class Post(models.Model):
 	def __str__(self):
 		return self.post_title
 	post_title = models.CharField(max_length=300)
-	post_description = models.TextField()
+	post_description = RichTextUploadingField()
 	status = models.ForeignKey(PostStatus,on_delete=models.CASCADE)
 	pub_date = models.DateTimeField('date published')
 	post_image = models.ImageField(upload_to='uploads/',null='TRUE')
@@ -25,6 +28,9 @@ class Announcement(models.Model):
 	announcement_title = models.CharField(max_length=300)
 	pub_date = models.DateTimeField('date published',null='TRUE')
 	announcement_attachment = models.FileField(upload_to='uploads',null='TRUE')
+	@property
+	def filename(self):
+		return self.announcement_attachment.path
 
 class Course(models.Model):
 	def __str__(self):

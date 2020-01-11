@@ -11,4 +11,5 @@ urlpatterns = [
 		path('post/<int:id>/',views.post, name='post'),
 		path('reference/<int:id>/',views.reference, name='referenceitem'),
 		path('download/<int:id>/',views.download, name='download'),
+		path('download_announcement/<int:id>/',views.download_announcement, name='download_announcement'),
 	]

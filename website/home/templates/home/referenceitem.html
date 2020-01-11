@@ -19,15 +19,14 @@
                         <div class="col-lg-9 col-md-12">
                             <hr>
                             <div class="">
-                                <div class="row justify-content-between px-2">
-                                    <div class="col-sm-9">
-                                        <h4 class="font-weight-bolder float-left" style="color:#444"></i>{{ reference.reference_title }}</h4>    
-                                    </div>
-                                    <div>
-                                        <p style="font-size:15px;line-height:3px;vertical-align:middle;">Date Posted: {{ reference.pub_date|date:'Y-m-d' }}</p>
-                                    </div>
-                                    
-                                    
+                                <div class="row px-3">
+                                        <h4 class="font-weight-bolder pb-2" style="color:#444"></i>{{ reference.reference_title }}</h4>
+                                </div>
+                                <div class="row justify-content-between px-3">
+                                        
+                                        
+                                        <p><a class="float-left" style="font-size:15px;line-height:3px;">{{library}}</a></p>
+                                        <p style="font-size:15px;line-height:3px;" class="mb-1 float-right">Date Posted: {{ reference.pub_date|date:'Y-m-d' }}</p>
                                 </div>
                                 <hr>
                             </div>
@@ -36,12 +35,12 @@
                             <div class="row">
 
                                 <div class="single-news mb-2 col-md-12">
-
+                                     
                                     <!-- Image -->
                                     <div class="view overlay rounded">
                                         
                                     </div>
-                                    <p class="dark-grey-text">{{ reference.reference_description}}
+                                    <p class="dark-grey-text" style="font-size:14px;">{{ reference.reference_description}}
                                     </p>
 
                                 </div>

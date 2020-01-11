@@ -15,21 +15,28 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include,path
+from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns 
-
+from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 	path('home', include('home.urls')),
 	path('', include('home.urls')),
-    
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 urlpatterns += staticfiles_urlpatterns() 
 urlpatterns +=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', serve, {
+            'document_root': settings.MEDIA_ROOT
+        }),
+    ]
 
 
 admin.site.site_header = 'CCSICT - Admin Panel'

@@ -1,22 +1,15 @@
 {% include "home/mainheader.html" %} 
-
-<main class="mt-5 pt-4">
-    <div class="container">
-        <!-- <div class="container z-depth-1"> -->
-        <div class="container ">
-
-            <section id="v-1">
-                <section class="pt-1">
-                    <img style="height:4em;" class="float-left" src="http://localhost/vtour/assets/img/ccsict.jpg" />
-                    <p class=" pt-2">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
-                        <br> &emsp;Isabela State University - Cabagan, Isabela
-                    </p>
-                </section>
-                <hr>
-
+    <main class="mt-5 pt-4">
+        <div class="container">
+            <section class="">
+                <img style="height:4em;" class="float-left" src="{{ logo.element_image.url }}" />
+                <p class=" pt-2  dark-grey-text">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
+                    <br> &emsp;Isabela State University - Cabagan, Isabela
+                </p>
+            </section>
                 <!-- Section: Magazine v.1 -->
                 <section class="magazine-section" style="min-height:274px;">
-                    <div class="row px-4">
+                    <div class="row ">
 
                         <div class="col-lg-3 col-md-12">
                             <h5 class="styled4 text-danger"></i>Traccer </h5>
@@ -34,7 +27,7 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div id="content-container" class="col-lg-9 col-md-12 px-4 mt-5">
+                        <div id="" class="col-lg-9 col-md-12 mt-5">
                             <ul>
                                 {% if tracceritems is not None %}
                                 {% for ti in tracceritems %}

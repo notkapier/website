@@ -74,6 +74,8 @@ def digitallibrary(request,library_id=0):
 				return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references})
 @csrf_exempt
 def traccer(request,traccer_id=0):
+	e = Element()
+	logo = e.getlogo()
 	t = Traccer()
 	traccers = t.getAllTraccers()
 	if request.is_ajax():
@@ -86,15 +88,15 @@ def traccer(request,traccer_id=0):
 		# return HttpResponse(html)
 	else:
 		if traccers is None:
-			return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None})
+			return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None,'logo':logo})
 		else:
 			traccer = Traccer.objects.first()
 			if traccers is None:
-				return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None})
+				return render(request,'home/traccer.html',{'tracceritems':None,'tracceritems':None,'logo':logo})
 			else:
 				traccer_id = traccer.id
 				tracceritems = TraccerItem.objects.filter(traccer_id=traccer_id)
-				return render(request,'home/traccer.html',{'traccers':traccers,'tracceritems':tracceritems})
+				return render(request,'home/traccer.html',{'traccers':traccers,'tracceritems':tracceritems,'logo':logo})
 def post(request,id):
 	post = Post.objects.get(id=id)
 	# posts = Post.objects.order_by('-pub_date').get[:6]
@@ -122,6 +124,16 @@ def reference(request,id):
 
 def download(request, id):
 	path = Reference.objects.get(id = id).filename
+	file_path = os.path.join(settings.MEDIA_ROOT,path)
+	if os.path.exists(file_path):
+		with open(file_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type = "application/octet-stream")
+			response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+			return response
+	raise Http404
+
+def download_announcement(request, id):
+	path = Announcement.objects.get(id = id).filename
 	file_path = os.path.join(settings.MEDIA_ROOT,path)
 	if os.path.exists(file_path):
 		with open(file_path, 'rb') as fh:
