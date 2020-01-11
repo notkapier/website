@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '^7$b6+^)px+=djwq&slmlqcz98v)h*37t-352^8$ih7+ahh_np'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,7 +124,7 @@ SITE_ID=1
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"), 
+    os.path.join(BASE_DIR, 'static'),  # Here you tell django to look for a folder named 'assets'
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')

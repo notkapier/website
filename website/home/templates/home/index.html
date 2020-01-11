@@ -38,8 +38,7 @@
                     <!-- Section: Magazine v.1 -->
                     <section class="magazine-section ">
 
-                        <h3 class="h2-responsive text-danger darken-3 font-weight-bolder pt-5 pb-3 styled3 ">
-    <!-- <img class="" src="http://localhost/vtour/assets/img/ccsict.jpg" class="float-left" alt="..."" style="height:2.5em;">-->Latest News</h3>
+                        
 
                         <!-- Section heading -->
                         <!-- Section description -->
@@ -48,7 +47,8 @@
 
                             <!-- Grid column -->
                             <div class="col-lg-8 col-md-12">
-
+                                <h3 class=" text-danger darken-3 font-weight-bolder pt-3 pb-0 ">Latest News</h3>
+                                <hr>
                                 <!-- Featured news -->
                                 <div class="row">
 
@@ -64,18 +64,18 @@
 
                                         <!-- Data -->
                                         <div class="news-data d-flex justify-content-between">
-                                            <a href="{% url 'post' featured.id %}" target="_blank" class="">
-                                                <h5 class="font-weight-bolder"></i>{{ featured.post_title }} {{ featured.id }}</h5>
+                                            <a href="{% url 'post' featured.id %}" target="_blank" class="dark-grey-text font-weight-bolder">
+                                                <p class=""></i>{{ featured.post_title }}</p>
                                             </a>
                                             <p class="font-weight-bold dark-grey-text"><i class="fas fa-clock-o pr-2"></i>{{ featured.pub_date|date:'Y-m-d' }}</p>
                                         </div>
 
                                         <!-- Excerpt -->
 
-                                        <p class="dark-grey-text font-weight-bolder" style="line-height: ;">{{ featured.post_description|slice:"0:200" }} . . .
-                                            <a href="{% url 'post' featured.id %}" target="_blank" class="btn btn-light btn-sm p-2">Read more</a>
+                                        <p class="dark-grey-text" style="line-height: ;">{{ featured.post_description|slice:"0:200" }} . . .
+                                            <a href="{% url 'post' featured.id %}" target="_blank" class="badge badge-info p-2">Read more</a>
                                         </p>
-
+                                        <hr>
                                     </div>
                                     <!-- Featured news -->
                                     {% if posts is not None %}
@@ -125,11 +125,11 @@
                             <!-- Grid column -->
 
                             <!-- Grid column -->
-                            <div class="col-lg-4 col-md-12">
+                            <div class="col-lg-4 col-md-12 pt-5">
 
                                 <!-- Featured news -->
                                 <!-- Featured news -->
-                                <h5 class="styled4 text-danger">Announcements <i class="fas fa-bullhorn"></i></h5>
+                                <h5 class="styled4 text-danger pt-0">Announcements </h5>
                                 <hr>
 
                                 <!-- Small news -->
@@ -144,7 +144,7 @@
 
 	                                            <!-- Excerpt -->
 	                                            <a>
-	                                                <p class="dark-grey-text"><b><i class="fas fa-scroll text-danger"></i> {{ a.pub_date|date:'Y-m-d' }} </b>- {{ a.announcement_title|slice:"0:150" }} . . . <i class="fas fa-angle-double-right blue-text"></i></p>
+	                                                <p class="dark-grey-text" style="font-size:13px"><b> {{ a.pub_date|date:'Y-m-d' }} </b>- {{ a.announcement_title|slice:"0:150" }} </p>
 	                                            </a>
 	                                            <hr>
 	                                        </div>
@@ -154,12 +154,12 @@
                                     <div class="row">
 
                                         <!-- Grid column -->
-                                        <div class="col-md-12 ">
+                                        <!-- <div class="col-md-12 ">
 
-                                            <!-- Excerpt -->
+                                            
                                             <img class="img-fluid rounded img-circle p-3 float-center " src="http://localhost/vtour/assets/img/isu.png" />
 
-                                        </div>
+                                        </div> -->
                                         <!-- Grid column -->
 
                                     </div>

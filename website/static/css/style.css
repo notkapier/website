@@ -5,3 +5,7 @@ overflow-y: scroll;
 height: 200px;
 
 }
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
