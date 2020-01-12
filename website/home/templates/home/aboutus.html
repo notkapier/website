@@ -1,0 +1,47 @@
+{% include "home/mainheader.html" %} 
+<main class="mt-5 pt-4">
+    <div class="container">
+        <div class="container  z-depth-1">
+
+            <section id="v-1">
+                <section class="pt-1">
+                    <img style="height:4em;" class="float-left" src="http://localhost/vtour/assets/img/ccsict.jpg" />
+                    <p class=" pt-2">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
+                        <br> &emsp;Isabela State University - Cabagan, Isabela
+                    </p>
+                </section>
+                <hr>
+                <!-- Section: Magazine v.1 -->
+                <section class="magazine-section " style="min-height:274px;">
+                    <div class="row px-4">
+
+                        <div class="col-lg-3 col-md-12">
+                            <h5 class="styled4 text-danger"></i> </h5>
+                            <div class="single-news mb-4">
+                                <!-- Grid row -->
+                                {% if abouttabs is not None %}
+                                {% for a in abouttabs %}
+
+                                <div class="row">
+                                    <!-- Grid column -->
+                                    <button class="btn btn-danger text-left aboutus" name="{{a.id}}" style="width:100%;background-color:#801414" type="button">{{a.tab_title}}</button>
+                                    <!-- Grid column -->
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div id="content-container" class="col-lg-9 col-md-12 px-1 mx-0 mt-2">
+                            {% include "home/aboutusitems.html" %}
+                        </div>
+                    </div>
+
+        </div>
+        <!-- Grid row -->
+
+        </section>
+        <!-- Section: Magazine v.1 -->
+
+    </div>
+</main>
+{% include "home/footer.html" %}

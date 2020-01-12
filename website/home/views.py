@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
-from .models import Post,Element,PostStatus,Announcement,Course,Batch,Library,Reference,Traccer,TraccerItem
+from .models import Post,Element,PostStatus,Announcement,Course,Batch,Library,Reference,Traccer,TraccerItem,AboutTab
 from django.utils.html import escape
 from django.template.loader import render_to_string
 from django.template import RequestContext
@@ -53,6 +53,8 @@ def alumni(request):
 
 @csrf_exempt
 def digitallibrary(request,library_id=0):
+	e = Element()
+	logo = e.getlogo()
 	l = Library()
 	libraries = l.getAllLibraries()
 	if request.is_ajax():
@@ -66,19 +68,19 @@ def digitallibrary(request,library_id=0):
 		# return HttpResponse(html)
 	else:
 		if libraries is None:
-			return render(request,'home/digitallibrary.html',{'libraries':None,'references':None})
+			return render(request,'home/digitallibrary.html',{'libraries':None,'references':None,'logo':logo})
 		else:
 			if library_id==0:
 				library = Library.objects.first()
 			else:
 				library = Library.objects.get(id=library_id)
 			if library is None:
-				return render(request,'home/digitallibrary.html',{'libraries':None,'references':None})
+				return render(request,'home/digitallibrary.html',{'libraries':None,'references':None,'logo':logo})
 			else:
 				library_id = library.id
 				library_name = library.library_name
 				references = Reference.objects.filter(library_id=library_id)
-				return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references,'library_name':library_name})
+				return render(request,'home/digitallibrary.html',{'libraries':libraries,'references':references,'library_name':library_name,'logo':logo})
 @csrf_exempt
 def traccer(request,traccer_id=0):
 	e = Element()
@@ -169,3 +171,28 @@ def tracceritem(request,id):
 	logo = e.getlogo()
 	traccer = Traccer.objects.get(id=tracceritem.traccer_id)
 	return render(request,'home/tracceritem.html',{'banner':banner,'logo':logo,'tracceritem':tracceritem,'traccer':traccer})
+@csrf_exempt
+def aboutus(request,id=0):
+	e = Element()
+	logo = e.getlogo()
+	a = AboutTab()
+	abouttabs = a.getAllAboutTabs()
+	if request.is_ajax():
+		id = request.POST['id']
+		# r = Reference()
+		abouttab = AboutTab.objects.get(id=id)
+		return render(request, "home/aboutusitems.html", {'abouttabs':abouttabs,'abouttab':abouttab})
+		# html = render_to_string('home/sample.html',{'references':references})
+		# return HttpResponse(html)
+	else:
+		if abouttabs is None:
+			return render(request,'home/aboutus.html',{'abouttabs':None,'abouttab':None,'logo':logo})
+		else:
+			if id == 0:
+				abouttab = AboutTab.objects.first()
+			else:
+				abouttab = AboutTab.objects.get(id=id)	
+			if abouttabs is None:
+				return render(request,'home/aboutus.html',{'abouttabs':None,'abouttab':None,'logo':logo})
+			else:
+				return render(request,'home/aboutus.html',{'abouttabs':abouttabs,'abouttab':abouttab,'logo':logo})

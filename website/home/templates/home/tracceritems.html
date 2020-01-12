@@ -1,9 +1,10 @@
-<h3 class="ml-4 pl-3 pt-2 font-weight-bolder grey-text"><i class="fas fa-caret-right mr-2"></i>{{traccer_type}}</h3>
+<h3 class="ml-4 pl-3 pt-2 font-weight-bolder text-danger">{{traccer_type}}</h3>
+<hr class="ml-4">
 <ul class="">
 	{% if tracceritems is not None %}
 	{% for t in tracceritems %}
     <li style="list-style: none;color:#339af0">
-        <a href="{% url 'tracceritem' t.id %}" target="_blank" class="s_font font-weight-bolder ">- {{t.traccer_item_title}}</a>
+        <a href="{% url 'tracceritem' t.id %}" target="_blank" class="s_font font-weight-bolder "><i class="fas fa-caret-right mr-2 mb-0"></i> {{t.traccer_item_title}}</a>
     </li>
     {% endfor %}
 	{% else %}

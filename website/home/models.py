@@ -153,5 +153,17 @@ class TraccerItem(models.Model):
 		except Reference.DoesNotExist:
 			tracceritems = None
 		return tracceritems
-
+class AboutTab(models.Model):
+	def __str__(self):
+		return self.tab_title
+	tab_title = models.CharField(max_length=300)
+	tab_description = RichTextUploadingField()
+	tab_image = models.ImageField(upload_to='uploads/',null='TRUE')
+	@classmethod
+	def getAllAboutTabs(self):
+		try:
+			abouttabs = AboutTab.objects.all()
+		except AboutTab.DoesNotExist:
+			abouttabs = None
+		return abouttabs 
 

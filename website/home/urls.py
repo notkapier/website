@@ -16,5 +16,7 @@ urlpatterns = [
 		path('download_announcement/<int:id>/',views.download_announcement, name='download_announcement'),
 		path('tracceritem/<int:id>/',views.tracceritem, name='tracceritem'),
 		path('download_tracceritem/<int:id>/',views.download_tracceritem, name='download_tracceritem'),
+		path('aboutus',views.aboutus, name='aboutus'),
+		path('aboutus/<int:id>/',views.aboutus, name='aboutus'),
 		
 	]

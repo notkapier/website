@@ -42,6 +42,28 @@ $(document).on('click', '.traccer', function(e){
    });
 })
 
+$(document).on('click', '.aboutus', function(e){
+  var token = '{{csrf_token}}';
+   var id = $(this).attr('name');
+   console.log(id);
+   $('#content-container').empty();
+   $.ajax({
+    url: '/aboutus',
+    type: 'POST',
+    dataType: 'html',
+    headers:{
+        "X-CSRFToken": token
+    },
+    data:{'id':id},
+    success: function(data){
+      $('#content-container').html(data);
+    },
+    error: function(jqXHR, textstatus, errorThrown){
+      console.log('error')
+    }
+   });
+})
+
 
 $(".dropdown-item").on("click", (function(e){
  	e.preventDefault();
