@@ -124,10 +124,10 @@ class Element(models.Model):
 	@classmethod
 	def getbanner(self):
 		try:
-			banner = Element.objects.get(element_name='banner')
+			banners = Element.objects.filter(element_name='banner')
 		except Element.DoesNotExist:
-			banner = Element(element_name='banner',element_description='Default Banner',element_image='/uploads/home.jpg')
-		return banner
+			banners = Element(element_name='banner',element_description='Default Banner',element_image='/uploads/home.jpg')
+		return banners
 	def getlogo(self):
 		try:
 			logo = Element.objects.get(element_name='logo')

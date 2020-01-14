@@ -1,17 +1,27 @@
 {% include "home/mainheader.html" %} 
-    <main class="mt-5 pt-4">
-        <div class="container">
+    <main class="mt-5 pt-4 container">
+        <div class="container-fluid">
             <section class="">
                 <img style="height:4em;" class="float-left" src="{{ logo.element_image.url }}" />
                 <p class=" pt-2  dark-grey-text">&emsp;<span class="h6">College of Computing Studies, Information and Communication Technology </span>
                     <br> &emsp;Isabela State University - Cabagan, Isabela
                 </p>
             </section>
-            <section class=" wow fadeIn p-4 card" style="background-image: url({{ banner.element_image.url }});background-repeat: no-repeat;background-position: center center;background-size: cover;">
+            <div class="">
+                <div class="slider slider-for">
+                    {% for b in banners %}
+                        <div>
+                            <img src="{{b.element_image.url}}" style="height:200px;width:100%;" class="img-fluid" alt="Responsive image">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+      
+            <!-- <section class=" wow fadeIn p-4 card" style="background-image: url({{ banner.element_image.url }});background-repeat: no-repeat;background-position: center center;background-size: cover;">
 
-                <!-- Content -->
-                <div class="card-body text-white text-center py-5 px-5 my-5" style="min-height:200px;">
-                    <!--former 300px-->
+               
+                <div class="card-body text-white text-center" style="min-height:200px;">
+               
 
                     <h1 class="mb-4">
                         <strong></strong>
@@ -22,14 +32,11 @@
                     <p class="mb-4">
                         <strong></strong>
                     </p>
-                    <!--
-                    <a target="_blank" href="http://localhost/vtour/assets/https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-green btn-lg">
-                        <i class="fas fa-graduation-cap ml-2"></i>
-                    </a>-->
+               
 
                 </div>
-                <!-- Content -->
-            </section>
+               
+            </section> -->
 
             <div class="">
             <!-- <div class="container z-depth-1"> -->
@@ -107,7 +114,7 @@
 										            <!-- Excerpt -->
                                                     <p style="font-size: 12px;" class="pt-1 mb-1 grey-text">{{ post.pub_date|date:'Y-m-d' }}</p>
                                                      <p class="dark-grey-text font" style="line-height: ;font-size: 12px;">{{ post.post_title|striptags|safe|slice:"0:100" }} . . .
-                                                        <a href="{% url 'post' featured.id %}" target="_blank" class="badge badge-info p-1 float-right">Read more</a>
+                                                        <a href="{% url 'post' post.id %}" target="_blank" class="badge badge-info p-1 float-right">Read more</a>
                                                     </p>
 										        </div>
 

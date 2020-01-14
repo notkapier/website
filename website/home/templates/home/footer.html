@@ -102,12 +102,36 @@
     <script src="{% static '/plugin/slick/slick.js' %}" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
         $(document).on('ready', function() {
+            // $('.slider-for').slick({
+            //     slidesToShow: 1,
+            //     slidesToScroll: 1,
+            //     arrows: true,
+            //     fade: true,
+            //     asNavFor: '.slider-nav'
+            // });
+            // $('.slider-nav').slick({
+            //     // slidesToShow: "{{ batches|length }}",
+            //     slidesToShow: "3",
+            //     slidesToScroll: 1,
+            //     asNavFor: '.slider-for',
+            //     arrows: 'false',
+            //     dots: true,
+            //     centerMode: true,
+            //     focusOnSelect: true,
+            //     autoplay: true, /* this is the new line */
+            //       autoplaySpeed: 2000,
+            //       infinite: true,
+            // });
+
             $('.slider-for').slick({
                 slidesToShow: 1,
-                slidesToScroll: 1,
+                slidesToScroll: 3,
                 arrows: true,
-                fade: true,
-                asNavFor: '.slider-nav'
+                // fade: true,
+                autoplay: true, /* this is the new line */
+                  autoplaySpeed: 200,
+                  infinite: true,
+                dots:true,
             });
             $('.slider-nav').slick({
                 // slidesToShow: "{{ batches|length }}",
@@ -115,12 +139,10 @@
                 slidesToScroll: 1,
                 asNavFor: '.slider-for',
                 arrows: 'false',
-                dots: true,
+                
                 centerMode: true,
                 focusOnSelect: true,
-                autoplay: true, /* this is the new line */
-                  autoplaySpeed: 2000,
-                  infinite: true,
+                
             });
 
         });

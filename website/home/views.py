@@ -24,7 +24,7 @@ def index(request):
 	except Post.DoesNotExist:
 		featured = Post(post_title='sample featured post',post_description='Sample Featured Description Sample Featured Description Sample Featured Description Sample Featured Description',post_image='/uploads/home.jpg',status_id=feature.id)
 	e = Element()
-	banner = e.getbanner()
+	banners = e.getbanner()
 	logo = e.getlogo()
 
 	try:
@@ -32,7 +32,7 @@ def index(request):
 	except Announcement.DoesNotExist:
 		announcements = None
 	# output = ', '.join([p.post_title for p in posts])
-	return render(request,'home/index.html',{'posts':posts,'banner':banner,'logo':logo,'featured':featured,'announcements':announcements})
+	return render(request,'home/index.html',{'posts':posts,'banners':banners,'logo':logo,'featured':featured,'announcements':announcements})
 
 def academics(request):
 	e = Element()
