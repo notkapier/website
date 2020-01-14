@@ -85,6 +85,7 @@ class Reference(models.Model):
 	library = models.ForeignKey(Library,on_delete=models.CASCADE)
 	reference_description = models.TextField()
 	pub_date = models.DateTimeField('date published',null='TRUE')
+	reference_image = models.ImageField(upload_to='uploads',null='TRUE')
 	reference_attachment = models.FileField(upload_to='uploads',null='TRUE')
 	@classmethod
 	def getAllReference(self,library_id):
