@@ -167,4 +167,13 @@ class AboutTab(models.Model):
 		except AboutTab.DoesNotExist:
 			abouttabs = None
 		return abouttabs 
-
+class Alumnus(models.Model):
+	firstname = models.CharField(max_length=300)
+	lastname = models.CharField(max_length=300)
+	mi = models.CharField(max_length=1)
+	# image = models.ImageField(upload_to='uploads/',null='TRUE')
+	batch = models.ForeignKey(Batch,on_delete=models.CASCADE)
+	class Meta:
+		verbose_name_plural="Alumni"
+	def __str__(self):
+		return "%s %s. %s" %(self.firstname,self.mi,self.lastname)

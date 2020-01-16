@@ -18,5 +18,5 @@ urlpatterns = [
 		path('download_tracceritem/<int:id>/',views.download_tracceritem, name='download_tracceritem'),
 		path('aboutus',views.aboutus, name='aboutus'),
 		path('aboutus/<int:id>/',views.aboutus, name='aboutus'),
-		
+		path('vtour',views.vtour, name='vtour'),
 	]

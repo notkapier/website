@@ -28,6 +28,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link waves-effect" href="{% url 'vtour' %}">Take a Tour</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link waves-effect" href="{% url 'academics' %}">Academics</a>
                         </li>
                         <li class="nav-item">
@@ -51,17 +54,17 @@
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                            <a href="http://localhost/vtour/assets/old/https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
+                            <a href="https://www.facebook.com/mdbootstrap" class="nav-link waves-effect" target="_blank">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="http://localhost/vtour/assets/old/https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
+                            <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
                                 <i class="fab fa-twitter"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="http://localhost/vtour/login" class="nav-link rounded waves-effect" target="_blank">
+                            <a  data-toggle="modal" data-target="#modal_login" class="nav-link rounded waves-effect" target="_blank">
                                 <i class="fas fa-user mr-2"></i>Login
                             </a>
                         </li>
@@ -74,3 +77,33 @@
         <!-- Navbar -->
 
     </header>
+
+    <div class="modal fade" id="modal_login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <img style="height:10em;width:10em;margin-left: auto;margin-right: auto;margin-top: 0px;margin-bottom: 0" class="float-center" src="{{ logo.element_image.url }}" />
+      <form class="text-center p-5" action="<?php echo base_url('admin/index')?>">
+
+    <p class="h4 mb-4 float-center">Sign in</p>
+
+    <!-- Email -->
+    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+    <!-- Password -->
+    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+    <div class="d-flex justify-content-around">
+        <div>
+            <!-- Remember me -->
+            
+        </div>
+    </div>
+
+    <!-- Sign in button -->
+    <button class="btn btn-danger btn-block my-4" type="submit">Sign in</button>
+
+</form>
+    </div>
+  </div>
+</div>

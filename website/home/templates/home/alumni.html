@@ -24,66 +24,45 @@
 
                         <div class="col-lg-3 col-md-12">
 
-                            <h5 class="styled4 text-danger"><i class="fas fa-users"></i>&emsp;Batch </h5>
-                            {% if courses is not None %}
-                            {% for c in courses %}
-                            <div class="single-news" class="" >
+                            <h5 class="styled4 text-danger"><i class="fas fa-users"></i>&emsp;Alumni </h5>
+                         
 
-                                <div class="row">
-                                    <button class="btn btn-danger dropdown-toggle text-left course" name="{{c.id}}" style="width:100%;background-color:#801414" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{c.course_abv}}</button>
-                                    {% if batches is not None %}
-                                    <div class="dropdown-menu force-scroll" style="width:100%;">
-                                        {% for b in batches %}
-                                        {% if b.course_id == c.id%}
-                                        <a class="dropdown-item batches " name="{{ forloop.counter0 }}" id="batch{{b.id}}">{{b.batch_year|add:"-1"}} - {{b.batch_year}} </a>
-                                        <div class="dropdown-divider"></div>
-                                        {% endif %}
-                                        {% endfor %}
-                                    </div>
+                        </div>
+
+                        
+                        <div class="col-lg-12 col-md-12" style="">
+                            <table id="example" class="table " style="">
+                                <thead class="text-danger">
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Course</th>
+                                        <th>Fullname</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if alumni is not None %}
+                                    {% for a in alumni %}
+                                    <tr>
+                                        <td>{{ a.batch.batch_year }}</td>
+                                        <td>{{ a.batch.course.course_name }}</td>
+                                        <td>{{a.firstname}} {{a.mi}}.s {{a.lastname}}</td>
+                                    </tr>
+                                    {% endfor %}
                                     {% endif %}
-                                </div>
-
-                            </div>
-                            {% endfor %}
-                            {% endif %}
-
+                                </tbody>
+                            </table>
+                            
+                            
                         </div>
-
-                        <!-- Grid column -->
-                        <div class="col-lg-9 col-md-12 px-4">
-
-                            <!-- Featured news -->
-                            <div class="row px-2 pt-3">
-
-                                <div class="slider slider-for">
-                                        {% for b in batches %}
-                                            <div>
-                                                <img src="{{b.batch_image.url}}" style="height:300px;width:750px;" class="img-fluid" alt="Responsive image">
-                                            </div>
-                                        {% endfor %}
-                                </div>
-                                <div class="slider slider-nav ">
-                                        {% for b in batches %}
-                                    <div>
-                                        <img src="{{b.batch_image.url}}" class="img-fluid" alt="Responsive image">
-                                    </div>
-                                        {% endfor %}
-                                </div>
-                                <!-- Featured news -->
-
-                            </div>
-                        </div>
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
-
-                        <!-- Grid column -->
+                        
 
                     </div>
-                    <!-- Grid row -->
+                    <iframe width="100%" height="480px" src="https://poly.google.com/view/58wBAUblsuZ/embed?chrome=min" frameborder="0" style="border:none;" allowvr="yes" allow="vr; xr; accelerometer; magnetometer; gyroscope; autoplay;" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" onmousewheel="" ></iframe>
+
+
 
                 </section>
-                <!-- Section: Magazine v.1 -->
+                
 
             </section>
 

@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404,render
 from django.http import HttpResponse
-from .models import Post,Element,PostStatus,Announcement,Course,Batch,Library,Reference,Traccer,TraccerItem,AboutTab
+from .models import Post,Element,PostStatus,Announcement,Course,Batch,Library,Reference,Traccer,TraccerItem,AboutTab,Alumnus
 from django.utils.html import escape
 from django.template.loader import render_to_string
 from django.template import RequestContext
@@ -47,9 +47,11 @@ def alumni(request):
 	b = Batch()
 	e = Element()
 	logo = e.getlogo()
+	alumni = Alumnus.objects.order_by('lastname')
 	courses = c.getAllCourses()
 	batches = b.getAllBatches()
-	return render(request,'home/alumni.html',{'courses':courses,'batches':batches,'logo':logo})	
+	display = b.getAllBatches().first()
+	return render(request,'home/alumni.html',{'courses':courses,'batches':batches,'logo':logo,'batch':display,'alumni':alumni})	
 
 @csrf_exempt
 def digitallibrary(request,library_id=0):
@@ -196,3 +198,7 @@ def aboutus(request,id=0):
 				return render(request,'home/aboutus.html',{'abouttabs':None,'abouttab':None,'logo':logo})
 			else:
 				return render(request,'home/aboutus.html',{'abouttabs':abouttabs,'abouttab':abouttab,'logo':logo})
+def vtour(request):
+	e = Element()
+	logo = e.getlogo()
+	return render(request,'home/vtour.html',{'logo':logo})	
